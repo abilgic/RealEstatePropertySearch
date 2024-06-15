@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+﻿
+using RealEstatePropertySearch.Server.Entities;
+using RealEstatePropertySearch.Server.Models;
 
 namespace RealEstatePropertySearch.Server.Interfaces
 {

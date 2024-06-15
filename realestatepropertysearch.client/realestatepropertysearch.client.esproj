@@ -7,4 +7,12 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\realestatepropertysearch.client\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="C:\Users\ahmet\OneDrive\Desktop\app.component.html">
+      <Link>app.component.html</Link>
+    </None>
+    <None Include="C:\Users\ahmet\OneDrive\Desktop\app.component.ts">
+      <Link>app.component.ts</Link>
+    </None>
+  </ItemGroup>
 </Project>

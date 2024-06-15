@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RealEstatePropertySearch.Server.Data;
+using RealEstatePropertySearch.Server.Interfaces;
 using System.Linq.Expressions;
 
 namespace RealEstatePropertySearch.Server.Repositories
@@ -43,7 +44,7 @@ namespace RealEstatePropertySearch.Server.Repositories
             _context.Set<T>().RemoveRange(entities);
             return await _context.SaveChangesAsync();
         }
-        public async Task<int> UpdateAsync(T entity)
+        public async Task<int> Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             return await _context.SaveChangesAsync();
@@ -54,5 +55,6 @@ namespace RealEstatePropertySearch.Server.Repositories
             return await _context.SaveChangesAsync();
         }
     }
+}
 
 

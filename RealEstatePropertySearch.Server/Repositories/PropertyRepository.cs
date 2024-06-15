@@ -1,6 +1,7 @@
 ﻿using RealEstatePropertySearch.Server.Data;
 using RealEstatePropertySearch.Server.Entities;
 using RealEstatePropertySearch.Server.Interfaces;
+using RealEstatePropertySearch.Server.Models;
 
 namespace RealEstatePropertySearch.Server.Repositories
 {
@@ -10,18 +11,19 @@ namespace RealEstatePropertySearch.Server.Repositories
         {
         }
 
-        public async Task<int> AddProperty(PropertyModel Propertymodel)
+        public async Task<int> AddProperty(PropertyModel model)
         {
             try
             {
-                var Property = new Property
+                Property property = new Property
                 {
-                    Name = Propertymodel.Name,
-                    Description = Propertymodel.Description,
-                    CreateDate = DateTime.Now
+                    PropertyType = model.PropertyType,
+                    Location = model.Location,
+                    Price = model.Price,
+                    NumberOfRooms = model.NumberOfRooms
                 };
 
-                var result = await Add(Property);
+                var result = await Add(property);
                 return result;
 
             }
@@ -59,16 +61,18 @@ namespace RealEstatePropertySearch.Server.Repositories
             return Propertyitem;
         }
 
-        public async Task<int> UpdateProperty(PropertyModel Propertymodel)
+        public async Task<int> UpdateProperty(PropertyModel model)
         {
             try
             {
-                var Propertyitem = await GetById(Propertymodel.Id);
-                Propertyitem.Name = Propertymodel.Name;
-                Propertyitem.Description = Propertymodel.Description;
-                Propertyitem.CreateDate = DateTime.Now;
+                var Propertyitem = await GetById(model.Id);
 
-                var result = await UpdateAsync(Propertyitem);
+                Propertyitem.PropertyType = model.PropertyType;
+                Propertyitem.Location = model.Location;
+                Propertyitem.Price = model.Price;
+                Propertyitem.NumberOfRooms = model.NumberOfRooms;
+
+                var result = await Update(Propertyitem);
                 return result;
 
             }

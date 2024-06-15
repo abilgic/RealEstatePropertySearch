@@ -1,16 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstatePropertySearch.Server.Data;
+using RealEstatePropertySearch.Server.Interfaces;
+using RealEstatePropertySearch.Server.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+//builder.Services.AddCors(p => p.AddPolicy("AllowOrigin", builder =>
+//{
+//    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowedToAllowWildcardSubdomains();
+//}));
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -23,7 +29,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+app.UseAuthentication();
 app.UseAuthorization();
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//});
+
+
 
 app.MapControllers();
 
