@@ -4,7 +4,6 @@
 
 <h1 id="tableLabel">REAL ESTATE PROPERTY</h1>
 
-<hr />
 <button style="margin: 50px; padding: 10px"
         type="button"
         class="btn btn-primary"
@@ -22,31 +21,31 @@
       </div>
       <div class="modal-body">
         <div class="mb-3 row">
-          <label class="col-sm-6 col-form-label"> Id</label>
+          <label class="col-sm-6 col-form-label text-start"> Id</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="propertyid" readonly="readonly">
           </div>
         </div>
         <div class="mb-3 row">
-          <label class="col-sm-6 col-form-label"> Property Type</label>
+          <label class="col-sm-6 col-form-label text-start"> Property Type</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="propertytype">
           </div>
         </div>
         <div class="mb-3 row">
-          <label class="col-sm-6 col-form-label">Location</label>
+          <label class="col-sm-6 col-form-label text-start">Location</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="location">
           </div>
         </div>
         <div class="mb-3 row">
-          <label class="col-sm-6 col-form-label">Price</label>
+          <label class="col-sm-6 col-form-label text-start">Price</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="price">
           </div>
         </div>
         <div class="mb-3 row">
-          <label class="col-sm-6 col-form-label">Number Of Rooms</label>
+          <label class="col-sm-6 col-form-label text-start">Number Of Rooms</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="numberofrooms">
           </div>
@@ -66,14 +65,15 @@
 </div>
 
 
-<table *ngIf="properties">
+<table *ngIf="properties" class="table">
   <thead>
     <tr>
-      <th>id</th>
-      <th>propertytype</th>
-      <th>location</th>
-      <th>price</th>
-      <th>numberofrooms</th>
+      <th>Id</th>
+      <th>Property Type</th>
+      <th>Location</th>
+      <th>Price</th>
+      <th>Number Of Rooms</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -84,8 +84,9 @@
       <td>{{ property.price }}</td>
       <td>{{ property.numberOfRooms }}</td>
 
-      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#propertyModal" (click)="getProperty(property.id);openPopupUpdate()">Update</button></td>
-      <td><button type="button" class="btn btn-secondary" (click)=deleteProperty(property.id)>Delete</button></td>
+      <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#propertyModal" (click)="getProperty(property.id);openPopupUpdate()">Update</button>
+          <button type="button" class="btn btn-danger" (click)=deleteProperty(property.id)>Delete</button></td>
+      
     </tr>
   </tbody>
 </table>
