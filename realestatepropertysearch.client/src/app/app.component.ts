@@ -22,19 +22,10 @@ interface Property {
 export class AppComponent implements OnInit {
 
   public properties: Property[] = [];
-  btnSave = new FormControl('btnSave');
-  btnUpdate = new FormControl('btnUpdate');
-
   public apiUrl: string = 'http://localhost:5182/api/Property';
   isShowSaveBtn = false;
   isShowUpdateBtn = false;
 
-
-  toggleDisplayUpdateBtn() {
-    this.isShowUpdateBtn = true;
-    this.isShowSaveBtn = false;
-    (document.getElementById("propertyModalLabel") as HTMLInputElement).innerHTML = "Update Property";
-  }
 
   constructor(private http: HttpClient) { }
 
@@ -71,7 +62,7 @@ export class AppComponent implements OnInit {
 
   getProperty(val: any) {
     this.isShowSaveBtn = false;
-    this.isShowUpdateBtn = true;   
+    this.isShowUpdateBtn = true;
     this.http.get<Property>(this.apiUrl + '/' + val).subscribe(
       (result) => {
         (document.getElementById("propertyid") as HTMLInputElement).value = result.id.toString();
@@ -120,7 +111,7 @@ export class AppComponent implements OnInit {
 
   createProperty() {
 
-    let property = {     
+    let property = {
       propertyType: (document.getElementById("propertytype") as HTMLInputElement).value,
       location: (document.getElementById("location") as HTMLInputElement).value,
       price: (document.getElementById("price") as HTMLInputElement).value,

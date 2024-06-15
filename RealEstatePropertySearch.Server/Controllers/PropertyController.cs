@@ -10,7 +10,7 @@ namespace RealEstatePropertySearch.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[EnableCors("AllowOrigin")]
+
     public class PropertyController : ControllerBase
     {
         private readonly IPropertyRepository _propertyRepository;
@@ -48,7 +48,7 @@ namespace RealEstatePropertySearch.Server.Controllers
 
 
 
-            var result =  _propertyRepository.AddProperty(model).Result;
+            var result = _propertyRepository.AddProperty(model).Result;
             return result > 0;
 
         }
