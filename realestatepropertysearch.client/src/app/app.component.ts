@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
-
 interface Property {
   id: number
   propertyType: string;
@@ -10,9 +8,6 @@ interface Property {
   price: number;
   numberOfRooms: number;
 }
-
-
-
 
 @Component({
   selector: 'app-root',
